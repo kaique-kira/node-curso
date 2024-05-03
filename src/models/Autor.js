@@ -7,7 +7,7 @@ const autoresSchema = new mongoose.Schema(
         nacionalidade: {type: String}
     },
     {
-        versionKey: false   
+        versionKey: false
     }
 )
 
