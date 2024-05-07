@@ -2,6 +2,8 @@ import { FiSearch } from "react-icons/fi";
 import "./style.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import SideBar from "./sidebar/sidebar";
+
 function App() {
   const [livros, setLivros] = useState([]);
   const [termoBusca, setTermoBusca] = useState("");
@@ -17,6 +19,7 @@ function App() {
           autor: livro.autor.nome,
         }));
         setLivros(livrosFormatados);
+        setLivros(livrosFormatados);
       } catch (error) {
         console.error("Erro ao buscar livros", error);
       }
@@ -29,6 +32,7 @@ function App() {
   };
   return (
     <div className="container">
+      <SideBar></SideBar>
       <h1 className="title">Biblioteca - Livros</h1>
 
       <div className="containerInput">

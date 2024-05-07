@@ -3,10 +3,6 @@ import livroController from "../controllers/livroscontrollers.js";
 
 const router = express.Router();
 
-router.get("/livros/cadastrar", (req, res) => {
-  res.sendFile(public + "/cadastroLivros.html");
-});
-
 router
   .get("/livros", livroController.getLivros)
   .get("/livros/busca", livroController.getLivroByEditora)
