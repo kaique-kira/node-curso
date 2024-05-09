@@ -1,16 +1,9 @@
 import React from "react";
 import { Container, Content } from "./styles";
-import {
-  FaTimes,
-  FaHome,
-  FaEnvelope,
-  FaRegSun,
-  FaUserAlt,
-  FaIdCardAlt,
-  FaRegFileAlt,
-  FaRegCalendarAlt,
-  FaChartBar,
-} from "react-icons/fa";
+import { FaTimes, FaHome, FaBook, FaSearch } from "react-icons/fa";
+import { IoPeopleSharp } from "react-icons/io5";
+import { GiBookshelf } from "react-icons/gi";
+import { SlPeople } from "react-icons/sl";
 import SidebarItem from "../sidebarItem";
 
 const Sidebar = ({ active }) => {
@@ -18,21 +11,33 @@ const Sidebar = ({ active }) => {
     active(false);
   };
 
+  const menuItems = [
+    { Icon: FaHome, Text: "Home", href: "/" },
+    { Icon: FaBook, Text: "Livros", href: "/livros" },
+    {
+      Icon: GiBookshelf,
+      Text: "Novo Livro",
+      href: "/cadastroLivro",
+    },
+    { Icon: IoPeopleSharp, Text: "Autor", href: "/autor" },
+    { Icon: SlPeople, Text: "Novo Autor", href: "/cadastroAutor" },
+    { Icon: FaSearch, Text: "Busca", href: "/busca" },
+  ];
+
+  console.log(menuItems);
+
   return (
     <Container sidebar={active}>
       <FaTimes onClick={closeSidebar} />
       <Content>
-        <SidebarItem Icon={FaHome} Text="Home" />
-        <SidebarItem Icon={FaChartBar} Text="Statistics" />
-        <SidebarItem Icon={FaUserAlt} Text="Users" />
-        <SidebarItem Icon={FaEnvelope} Text="Mail" />
-        <SidebarItem Icon={FaRegCalendarAlt} Text="Calendar" />
-        <SidebarItem Icon={FaIdCardAlt} Text="Employees" />
-        <SidebarItem Icon={FaRegFileAlt} Text="Reports" />
-        <SidebarItem Icon={FaRegSun} Text="Settings" />
+        {menuItems.map((item, index) => (
+          <a key={index} href={item.href}>
+            {" "}
+            <SidebarItem Icon={item.Icon} Text={item.Text} />
+          </a>
+        ))}
       </Content>
     </Container>
   );
 };
-
 export default Sidebar;
