@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./cadastroLivro.css";
-import SideBar from "../sidebar/sidebar";
 import axios from "axios";
-import AppRoutes from "../routes";
 
 const CadastroLivro = () => {
   const [livro, setLivro] = useState({
@@ -67,8 +65,6 @@ const CadastroLivro = () => {
 
   return (
     <div className="sidebar">
-      <SideBar></SideBar>
-      <AppRoutes></AppRoutes>
       <div className="container">
         <section className="header">
           <h2>Novo Livro</h2>

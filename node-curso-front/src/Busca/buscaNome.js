@@ -2,8 +2,6 @@ import { FiSearch } from "react-icons/fi";
 import "./style.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import SideBar from "../sidebar/sidebar";
-import AppRoutes from "../routes";
 
 function BucaNome() {
   const [livros, setLivros] = useState([]);
@@ -33,8 +31,6 @@ function BucaNome() {
   };
   return (
     <div className="sidebar">
-      <SideBar></SideBar>
-      <AppRoutes></AppRoutes>
       <div className="container">
         <h1 className="title">Biblioteca - Livros</h1>
 
