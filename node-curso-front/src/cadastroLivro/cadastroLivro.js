@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./cadastroLivro.css";
-import axios from "axios";
+import CenteredContainer from "../ContainerCentered/CenteredContainer";
+import { bibliotecaFecth } from "../axios/config";
 
 const CadastroLivro = () => {
   const [livro, setLivro] = useState({
@@ -9,13 +10,20 @@ const CadastroLivro = () => {
     editora: "",
     numeroPaginas: "",
   });
+  const [autores, setAutores] = useState([]);
 
-  const [errors, setErrors] = useState({
-    titulo: "",
-    autor: "",
-    editora: "",
-    numeroPaginas: "",
-  });
+  useEffect(() => {
+    async function fetchAutores() {
+      try {
+        const response = await bibliotecaFecth.get("/autores");
+        setAutores(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar autores", error);
+      }
+    }
+
+    fetchAutores();
+  }, []);
 
   const handleChange = (e) => {
     setLivro({ ...livro, [e.target.id]: e.target.value });
@@ -23,48 +31,21 @@ const CadastroLivro = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const isValid = validateForm();
-
-    if (isValid) {
-      try {
-        const response = await axios.post("http://localhost:3000/livros", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(livro),
-        });
-
-        if (response.ok) {
-          alert("Livro cadastrado com sucesso!");
-        } else {
-          throw new Error("Erro ao cadastrar o livro");
-        }
-      } catch (error) {
-        console.error("Erro ao cadastrar o livro", error);
-        alert("Erro ao cadastrar o livro");
+    try {
+      const response = await bibliotecaFecth.post("/livros", livro);
+      if (response.status === 201) {
+        alert("Livro cadastrado com sucesso!");
+      } else {
+        throw new Error("Erro ao cadastrar o livro", livro);
       }
+    } catch (error) {
+      console.error("Erro ao cadastrar o livro", error);
+      alert("Erro ao cadastrar o livro");
     }
   };
 
-  const validateForm = () => {
-    const { titulo, autor, editora, numeroPaginas } = livro;
-    const errorsCopy = { ...errors };
-
-    errorsCopy.titulo = titulo ? "" : "O nome do livro é obrigatório";
-    errorsCopy.autor = autor ? "" : "O nome do autor é obrigatório";
-    errorsCopy.editora = editora ? "" : "O nome da editora é obrigatório";
-    errorsCopy.numeroPaginas = numeroPaginas
-      ? ""
-      : "O número de páginas é obrigatório";
-
-    setErrors(errorsCopy);
-
-    return Object.values(errorsCopy).every((error) => error === "");
-  };
-
   return (
-    <div className="sidebar">
+    <CenteredContainer>
       <div className="container">
         <section className="header">
           <h2>Novo Livro</h2>
@@ -80,18 +61,17 @@ const CadastroLivro = () => {
               value={livro.titulo}
               onChange={handleChange}
             />
-            <a>{errors.titulo}</a>
           </div>
           <div className="form-content">
             <label htmlFor="autor">Autor</label>
-            <input
-              type="text"
-              id="autor"
-              placeholder="Selecione o Autor"
-              value={livro.autor}
-              onChange={handleChange}
-            />
-            <a>{errors.autor}</a>
+            <select id="autor" value={livro.autor} onChange={handleChange}>
+              <option value="">Selecione o autor</option>
+              {autores.map((autor) => (
+                <option key={autor._id} value={autor._id}>
+                  {autor.nome}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="form-content">
             <label htmlFor="editora">Editora</label>
@@ -102,7 +82,6 @@ const CadastroLivro = () => {
               value={livro.editora}
               onChange={handleChange}
             />
-            <a>{errors.editora}</a>
           </div>
           <div className="form-content">
             <label htmlFor="numeroPaginas">Nº páginas</label>
@@ -113,13 +92,12 @@ const CadastroLivro = () => {
               value={livro.numeroPaginas}
               onChange={handleChange}
             />
-            <a>{errors.numeroPaginas}</a>
           </div>
 
           <button type="submit">Cadastrar</button>
         </form>
       </div>
-    </div>
+    </CenteredContainer>
   );
 };
 

@@ -1,9 +1,10 @@
 import { FiSearch } from "react-icons/fi";
-import "./style.css";
+import "./buscaNome.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import CenteredContainer from "../ContainerCentered/CenteredContainer";
 
-function BucaNome() {
+function BuscaNome() {
   const [livros, setLivros] = useState([]);
   const [termoBusca, setTermoBusca] = useState("");
 
@@ -30,46 +31,48 @@ function BucaNome() {
     setTermoBusca(event.target.value);
   };
   return (
-    <div className="sidebar">
-      <div className="container">
-        <h1 className="title">Biblioteca - Livros</h1>
+    <CenteredContainer>
+      <div className="Center">
+        <div className="container">
+          <h1 className="title">Biblioteca - Livros</h1>
 
-        <div className="containerInput">
-          <input
-            type="text"
-            placeholder="Digite o nome do livro"
-            value={termoBusca}
-            onChange={handleInputChange}
-          />
-          <button className="buttonSearch">
-            <FiSearch size={25} color="#FFF" />
-          </button>
-        </div>
+          <div className="containerInput">
+            <input
+              type="text"
+              placeholder="Digite o nome do livro"
+              value={termoBusca}
+              onChange={handleInputChange}
+            />
+            <button className="buttonSearch">
+              <FiSearch size={25} color="#FFF" />
+            </button>
+          </div>
 
-        <main className="main">
-          {livros.length > 0 ? (
-            livros.map((livro) => (
-              <div key={livro._id}>
-                <div>
-                  <h2>Livro: {livro.titulo}</h2>
+          <main className="main">
+            {livros.length > 0 ? (
+              livros.map((livro) => (
+                <div key={livro._id}>
                   <div>
-                    <span>Autor: {livro.autor}</span>
-                  </div>
-                  <div>
-                    <span>Editora: {livro.editora}</span>
-                  </div>
-                  <div>
-                    <span>Paginas: {livro.paginas}</span>
+                    <h2>Livro: {livro.titulo}</h2>
+                    <div>
+                      <span>Autor: {livro.autor}</span>
+                    </div>
+                    <div>
+                      <span>Editora: {livro.editora}</span>
+                    </div>
+                    <div>
+                      <span>Paginas: {livro.paginas}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            <p>Nenhum livro encontrado</p>
-          )}
-        </main>
+              ))
+            ) : (
+              <p>Nenhum livro encontrado</p>
+            )}
+          </main>
+        </div>
       </div>
-    </div>
+    </CenteredContainer>
   );
 }
-export default BucaNome;
+export default BuscaNome;

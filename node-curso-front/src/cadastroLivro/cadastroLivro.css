@@ -1,20 +1,7 @@
-.sidebar div {
-}
-
-.container {
-  background-color: #fafafa;
-  border-radius: 14px;
-  margin: 14px;
-  max-width: 600px;
-  width: 80%;
-  box-sizing: 0 3px 3px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-}
-
 .header {
   padding: 24px;
   text-align: center;
-  color: #212b46;
+  color: #fafafa;
 }
 
 .form {
@@ -28,11 +15,13 @@
 }
 
 .form-content label {
+  color: #fafafa;
   display: inline-block;
   margin-bottom: 4px;
 }
 
-.form-content input {
+.form-content input,
+.form-content select {
   display: block;
   width: 100%;
   border-radius: 8px;
@@ -66,4 +55,5 @@
 .form-content.error a {
   color: #ff3b25;
   visibility: visible;
+  margin-top: 5px;
 }

@@ -1,0 +1,12 @@
+.post {
+  border-bottom: 3px solid #fafafa;
+}
+
+.post h2,
+.post p {
+  margin-bottom: 1px;
+}
+
+.post h2 ::first-letter {
+  text-transform: uppercase;
+}

@@ -1,19 +1,41 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import CadastroLivro from "./cadastroLivro/cadastroLivro";
+import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
+import BuscaNome from "./Busca/buscaNome";
+import CadastroLivro from "./cadastroLivro/cadastroLivro";
 import CadastroAutor from "./cadastroAutor/cadastroAutor";
-import BucaNome from "./Busca/buscaNome";
+import { Home } from "./Home/Home";
+import { ListarLivros } from "./ListarLivros/listarLivros";
+import { ListarAutores } from "./listarAutores/listarAutores";
 
-const AppRoutes = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/cadastroLivro" element={<CadastroLivro />} />
-      <Route path="/CadastroAutor" element={<CadastroAutor />} />
-      <Route path="/busca" element={<BucaNome />} />
-    </Routes>
-  );
-};
-
-export default AppRoutes;
+export const appRoutes = createBrowserRouter([
+  {
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/busca",
+        element: <BuscaNome />,
+      },
+      {
+        path: "/cadastroLivro",
+        element: <CadastroLivro />,
+      },
+      {
+        path: "/cadastroAutor",
+        element: <CadastroAutor />,
+      },
+      {
+        path: "/livros",
+        element: <ListarLivros />,
+      },
+      {
+        path: "/autores",
+        element: <ListarAutores />,
+      },
+    ],
+  },
+]);

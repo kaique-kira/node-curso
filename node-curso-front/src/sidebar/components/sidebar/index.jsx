@@ -19,7 +19,7 @@ const Sidebar = ({ active }) => {
       Text: "Novo Livro",
       href: "/cadastroLivro",
     },
-    { Icon: IoPeopleSharp, Text: "Autor", href: "/autor" },
+    { Icon: IoPeopleSharp, Text: "Autor", href: "/autores" },
     { Icon: SlPeople, Text: "Novo Autor", href: "/cadastroAutor" },
     { Icon: FaSearch, Text: "Busca", href: "/busca" },
   ];

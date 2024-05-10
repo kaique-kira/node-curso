@@ -1,15 +1,14 @@
 // App.js
 import React from "react";
-import AppRoutes from "./routes";
 import SideBar from "./sidebar/sidebar";
+import { Outlet } from "react-router-dom";
+import "./index.css";
 
 function App() {
   return (
     <div className="App">
-      <SideBar>
-        <AppRoutes />
-      </SideBar>
-      <h1>Essa porra ta ligando</h1>
+      <SideBar></SideBar>
+      <Outlet />
     </div>
   );
 }
