@@ -2,7 +2,6 @@ import { FiSearch } from "react-icons/fi";
 import "./buscaNome.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import CenteredContainer from "../ContainerCentered/CenteredContainer";
 
 function BuscaNome() {
   const [livros, setLivros] = useState([]);
@@ -31,48 +30,44 @@ function BuscaNome() {
     setTermoBusca(event.target.value);
   };
   return (
-    <CenteredContainer>
-      <div className="Center">
-        <div className="container">
-          <h1 className="title">Biblioteca - Livros</h1>
+    <div className="Center">
+      <h1 className="title">Biblioteca - Livros</h1>
 
-          <div className="containerInput">
-            <input
-              type="text"
-              placeholder="Digite o nome do livro"
-              value={termoBusca}
-              onChange={handleInputChange}
-            />
-            <button className="buttonSearch">
-              <FiSearch size={25} color="#FFF" />
-            </button>
-          </div>
-
-          <main className="main">
-            {livros.length > 0 ? (
-              livros.map((livro) => (
-                <div key={livro._id}>
-                  <div>
-                    <h2>Livro: {livro.titulo}</h2>
-                    <div>
-                      <span>Autor: {livro.autor}</span>
-                    </div>
-                    <div>
-                      <span>Editora: {livro.editora}</span>
-                    </div>
-                    <div>
-                      <span>Paginas: {livro.paginas}</span>
-                    </div>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p>Nenhum livro encontrado</p>
-            )}
-          </main>
-        </div>
+      <div className="containerInput">
+        <input
+          type="text"
+          placeholder="Digite o nome do livro"
+          value={termoBusca}
+          onChange={handleInputChange}
+        />
+        <button className="buttonSearch">
+          <FiSearch size={25} color="#FFF" />
+        </button>
       </div>
-    </CenteredContainer>
+
+      <main className="main">
+        {livros.length > 0 ? (
+          livros.map((livro) => (
+            <div key={livro._id}>
+              <div>
+                <h2>Livro: {livro.titulo}</h2>
+                <div>
+                  <span>Autor: {livro.autor}</span>
+                </div>
+                <div>
+                  <span>Editora: {livro.editora}</span>
+                </div>
+                <div>
+                  <span>Paginas: {livro.paginas}</span>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>Nenhum livro encontrado</p>
+        )}
+      </main>
+    </div>
   );
 }
 export default BuscaNome;

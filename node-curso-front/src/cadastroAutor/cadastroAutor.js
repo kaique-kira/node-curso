@@ -26,24 +26,26 @@ const CadastroAutor = () => {
     }
   };
   return (
-    <div className="container">
-      <section className="header">
-        <h1>Novo Autor</h1>
-      </section>
+    <div className="Center">
+      <div className="caixa-branca">
+        <section className="header">
+          <h1>Novo Autor</h1>
+        </section>
 
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="form-content">
-          <label htmlFor="nome">Nome do Autor</label>
-          <input
-            type="text"
-            id="nome"
-            placeholder="Digite o nome do livro"
-            value={autor.nome}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">Cadastrar</button>
-      </form>
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="form-content">
+            <label htmlFor="nome">Nome do Autor</label>
+            <input
+              type="text"
+              id="nome"
+              placeholder="Digite o nome do livro"
+              value={autor.nome}
+              onChange={handleChange}
+            />
+          </div>
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
     </div>
   );
 };

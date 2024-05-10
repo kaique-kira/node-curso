@@ -45,8 +45,8 @@ const CadastroLivro = () => {
   };
 
   return (
-    <CenteredContainer>
-      <div className="container">
+    <div className="Center">
+      <div className="caixa-branca">
         <section className="header">
           <h2>Novo Livro</h2>
         </section>
@@ -97,7 +97,7 @@ const CadastroLivro = () => {
           <button type="submit">Cadastrar</button>
         </form>
       </div>
-    </CenteredContainer>
+    </div>
   );
 };
 
