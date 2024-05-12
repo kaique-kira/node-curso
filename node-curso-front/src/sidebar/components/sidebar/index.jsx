@@ -14,11 +14,7 @@ const Sidebar = ({ active }) => {
   const menuItems = [
     { Icon: FaHome, Text: "Home", href: "/" },
     { Icon: FaBook, Text: "Livros", href: "/livros" },
-    {
-      Icon: GiBookshelf,
-      Text: "Novo Livro",
-      href: "/cadastroLivro",
-    },
+    { Icon: GiBookshelf, Text: "Novo Livro", href: "/cadastroLivro" },
     { Icon: IoPeopleSharp, Text: "Autor", href: "/autores" },
     { Icon: SlPeople, Text: "Novo Autor", href: "/cadastroAutor" },
     { Icon: FaSearch, Text: "Busca", href: "/busca" },

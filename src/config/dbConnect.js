@@ -1,11 +1,9 @@
 import mongoose from "mongoose";
-
-// mongoose.connect("mongodb+srv://Kira:b2TKs0llkE2mOVxi@kira.hzxiklg.mongodb.net/Kira-Node");
-
+import "dotenv/config";
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
-  "mongodb+srv://kaiquedfelipe:u35ivwBQWI0quhEz@projetoingrid.ekems1q.mongodb.net/",
+  process.env.MONGO_STRING,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
